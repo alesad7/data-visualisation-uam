@@ -1,13 +1,13 @@
 #Wczytanie danych z pliku csv
-data <- read.csv("C:\\Users\\Lenovo\\Downloads\\archive\\games.csv", header = TRUE)
+data <- read.csv("dev/WD/data-visualisation-uam/resources/games.csv", header = TRUE)
 
-# Wykres przedstawiaj¹cy rezultaty partii rozpoczêtych 20 najbardziej popularnymi otwarciami
+# Wykres przedstawiaj?cy rezultaty partii rozpocz?tych 20 najbardziej popularnymi otwarciami
 
-# Zliczam wystêpowanie wszystkich otwaræ i sortuje malej¹co
+# Zliczam wyst?powanie wszystkich otwar? i sortuje malej?co
 data %>%
   count(opening_name) %>% arrange(desc(n)) -> most_common_openings
 
-# Z wszystkich danych wyci¹gam tylko te wiersze, które dotycz¹ 20 najpopularniejszych otwaræ
+# Z wszystkich danych wyci?gam tylko te wiersze, kt?re dotycz? 20 najpopularniejszych otwar?
 data %>%
   filter(opening_name %in% head(most_common_openings$opening_name, 20)) -> bar_plot_data
 
@@ -20,8 +20,8 @@ ggplot(bar_plot_data, aes(y = opening_name, fill = victory_status)) +
   theme(title = element_text(face = "bold")) +
   labs(fill = "Game result")
 
-# Wybieram ze zbioru tylko dane o okreœlonych warunkach
-# Bêd¹ to wybrane wiersze zawieraj¹ce wylosowane otwarcia szachowe
+# Wybieram ze zbioru tylko dane o okre?lonych warunkach
+# B?d? to wybrane wiersze zawieraj?ce wylosowane otwarcia szachowe
 
 n.opening_name <- 15
 
